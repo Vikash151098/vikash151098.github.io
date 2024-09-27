@@ -1,19 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="stylesheet" href="src/style.css" />
 
-    <title>vikash151098</title>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Portfolio</title>
+  <style>
+    /* Basic Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Navigation Styling */
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Section Styling */
+    section {
+      padding: 40px;
+      margin: 20px auto;
+      max-width: 1200px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      line-height: 1.6;
+    }
+
+    /* Resume Styling */
+    .resume {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .resume li {
+      background: #e4e4e4;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    /* Portfolio Section */
+    .portfolio-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .portfolio-item {
+      width: 30%;
+      margin: 15px 0;
+      background-color: #eee;
+      padding: 20px;
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    .portfolio-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    /* Footer Styling */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .portfolio-item {
+        width: 100%;
+      }
+
+      nav ul li {
+        display: block;
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h2>Welcome to My Portfolio</h2>
+    <p>Hello! I am [Your Name], a web developer passionate about creating responsive, user-friendly web applications.
+      Feel free to explore my work and experience.</p>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hi, I'm [Your Name], a dedicated web developer with a strong background in HTML, CSS, JavaScript, and front-end
+      frameworks. With a love for coding and design, I create modern, dynamic websites that are both functional and
+      visually appealing. I am constantly learning and evolving to stay updated with the latest web technologies.</p>
+  </section>
+
+  <!-- Resume Section -->
+  <section id="resume">
+    <h2>Resume</h2>
+    <ul class="resume">
+      <li>
+        <h3>Web Developer - Company Name</h3>
+        <p>Duration: January 2020 - Present</p>
+        <p>Description: Developing and maintaining websites using modern web technologies like HTML, CSS, JavaScript,
+          and React.js.</p>
+      </li>
+      <li>
+        <h3>Junior Developer - Previous Company</h3>
+        <p>Duration: June 2018 - December 2019</p>
+        <p>Description: Assisted in building responsive web applications and optimized website performance using various
+          techniques.</p>
+      </li>
+      <li>
+        <h3>Education</h3>
+        <p>Bachelor of Science in Computer Science, [University Name]</p>
+        <p>Graduated: 2018</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio">
     <h2>My Portfolio</h2>
-    <p>this is about my biography</p>
-    <a href="https://www.google.com" target="_blank">click me</a>
-  </body>
+    <div class="portfolio-items">
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300" alt="Project 1">
+        <h3>Project 1</h3>
+        <p>Project 1 description: A responsive web application built using HTML, CSS, and JavaScript.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300" alt="Project 2">
+        <h3>Project 2</h3>
+        <p>Project 2 description: A single-page application developed using React.js and Node.js backend.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300" alt="Project 3">
+        <h3>Project 3</h3>
+        <p>Project 3 description: An e-commerce website with a fully functional shopping cart and payment integration.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>If you have any questions or would like to work together, feel free to reach out!</p>
+    <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    <p>Phone: +123 456 7890</p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 My Portfolio. All Rights Reserved.</p>
+  </footer>
+
+</body>
+
 </html>
