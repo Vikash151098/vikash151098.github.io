@@ -5,121 +5,166 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>My Portfolio</title>
+  <title>Responsive Portfolio</title>
   <style>
-    /* Basic Styling */
-    body {
-      font-family: Arial, sans-serif;
+    /* Reset default styling */
+    * {
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
+      box-sizing: border-box;
     }
 
-    /* Navigation Styling */
-    nav {
-      background-color: #333;
-      color: #fff;
-      padding: 10px;
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Background Styling */
+    .background-image {
+      background-image: url('https://via.placeholder.com/1920x1080');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
       text-align: center;
-      position: sticky;
+      position: relative;
+      z-index: 1;
+    }
+
+    .background-image::after {
+      content: '';
+      position: absolute;
       top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .hero-text {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    /* Responsive Navigation Styling */
+    nav {
+      position: fixed;
+      width: 100%;
+      background: #333;
+      color: white;
+      padding: 15px 0;
       z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      margin-left: 20px;
+      font-size: 1.5rem;
     }
 
     nav ul {
       list-style-type: none;
-      padding: 0;
-      margin: 0;
+      display: flex;
+      margin-right: 20px;
     }
 
     nav ul li {
-      display: inline;
       margin: 0 15px;
     }
 
     nav ul li a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
+      font-size: 1.1rem;
     }
 
     nav ul li a:hover {
       text-decoration: underline;
     }
 
-    /* Section Styling */
-    section {
-      padding: 40px;
-      margin: 20px auto;
-      max-width: 1200px;
-      background-color: #fff;
-      border-radius: 5px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* Hamburger menu for mobile */
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      margin-right: 20px;
     }
 
-    section h2 {
+    /* Responsive Nav Menu */
+    .nav-links {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+
+      nav ul {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #333;
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+
+      .active {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* Section Styling */
+    section {
+      padding: 80px 20px;
+      background-color: #fff;
       text-align: center;
+    }
+
+    h2 {
+      font-size: 2.2rem;
       margin-bottom: 20px;
     }
 
-    section p {
-      line-height: 1.6;
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
     }
 
-    /* Resume Styling */
-    .resume {
-      list-style-type: none;
-      padding: 0;
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      /* color: #333; */
     }
 
-    .resume li {
-      background: #e4e4e4;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 5px;
-    }
-
-    /* Portfolio Section */
-    .portfolio-items {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-
-    .portfolio-item {
-      width: 30%;
-      margin: 15px 0;
-      background-color: #eee;
-      padding: 20px;
-      text-align: center;
-      border-radius: 5px;
-    }
-
-    .portfolio-item img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-
-    /* Footer Styling */
+    /* Footer */
     footer {
-      text-align: center;
       padding: 20px;
+      text-align: center;
       background-color: #333;
       color: white;
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .portfolio-item {
-        width: 100%;
-      }
-
-      nav ul li {
-        display: block;
-        margin: 5px 0;
-      }
-    }
+    
   </style>
 </head>
 
@@ -127,7 +172,9 @@
 
   <!-- Navigation -->
   <nav>
-    <ul>
+    <div class="logo">My Portfolio</div>
+    <div class="menu-icon" id="menuIcon">&#9776;</div>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#resume">Resume</a></li>
@@ -136,81 +183,66 @@
     </ul>
   </nav>
 
-  <!-- Home Section -->
-  <section id="home">
-    <h2>Welcome to My Portfolio</h2>
-    <p>Hello! I am [Your Name], a web developer passionate about creating responsive, user-friendly web applications.
-      Feel free to explore my work and experience.</p>
+  <!-- Hero Section with Background Image -->
+  <section class="background-image" id="home">
+    <div class="hero-text">
+      <h1>Welcome to My Portfolio</h1>
+      <p>Web Developer | Designer | Programmer</p>
+    </div>
   </section>
 
   <!-- About Section -->
   <section id="about">
-    <h2>About Me</h2>
-    <p>Hi, I'm [Your Name], a dedicated web developer with a strong background in HTML, CSS, JavaScript, and front-end
-      frameworks. With a love for coding and design, I create modern, dynamic websites that are both functional and
-      visually appealing. I am constantly learning and evolving to stay updated with the latest web technologies.</p>
+    <div class="container">
+      <h2>About Me</h2>
+      <p>Hello, I'm [Your Name]. I'm a passionate web developer with a focus on creating beautiful, functional, and
+        user-friendly websites. I have experience in HTML, CSS, JavaScript, and front-end frameworks. I enjoy bringing
+        ideas to life in the browser and constantly learning new technologies to stay ahead in the industry.</p>
+    </div>
   </section>
 
   <!-- Resume Section -->
   <section id="resume">
-    <h2>Resume</h2>
-    <ul class="resume">
-      <li>
-        <h3>Web Developer - Company Name</h3>
-        <p>Duration: January 2020 - Present</p>
-        <p>Description: Developing and maintaining websites using modern web technologies like HTML, CSS, JavaScript,
-          and React.js.</p>
-      </li>
-      <li>
-        <h3>Junior Developer - Previous Company</h3>
-        <p>Duration: June 2018 - December 2019</p>
-        <p>Description: Assisted in building responsive web applications and optimized website performance using various
-          techniques.</p>
-      </li>
-      <li>
-        <h3>Education</h3>
-        <p>Bachelor of Science in Computer Science, [University Name]</p>
-        <p>Graduated: 2018</p>
-      </li>
-    </ul>
+    <div class="container">
+      <h2>Resume</h2>
+      <p>Experience details: Web Developer, Company XYZ | Junior Developer, Company ABC. Bachelor of Science in Computer
+        Science from [University Name].</p>
+    </div>
   </section>
 
   <!-- Portfolio Section -->
   <section id="portfolio">
-    <h2>My Portfolio</h2>
-    <div class="portfolio-items">
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/300" alt="Project 1">
-        <h3>Project 1</h3>
-        <p>Project 1 description: A responsive web application built using HTML, CSS, and JavaScript.</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/300" alt="Project 2">
-        <h3>Project 2</h3>
-        <p>Project 2 description: A single-page application developed using React.js and Node.js backend.</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/300" alt="Project 3">
-        <h3>Project 3</h3>
-        <p>Project 3 description: An e-commerce website with a fully functional shopping cart and payment integration.
-        </p>
-      </div>
+    <div class="container">
+      <h2>Portfolio</h2>
+      <p>Details of your projects go here.</p>
     </div>
   </section>
 
   <!-- Contact Section -->
   <section id="contact">
-    <h2>Contact Me</h2>
-    <p>If you have any questions or would like to work together, feel free to reach out!</p>
-    <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-    <p>Phone: +123 456 7890</p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+    <div class="container">
+      <h2>Contact Me</h2>
+      <p>Feel free to reach out to me through email or LinkedIn if you'd like to work together on exciting projects!</p>
+      <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2024 My Portfolio. All Rights Reserved.</p>
+    <p>&copy; 2024 My Portfolio. All rights reserved.</p>
   </footer>
+
+  <!-- JavaScript for Mobile Menu -->
+  <script>
+    const menuIcon = document.getElementById('menuIcon');
+    const navLinks = document.getElementById('navLinks');
+
+    menuIcon.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+
+    });
+  </script>
 
 </body>
 
